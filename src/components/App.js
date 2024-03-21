@@ -93,7 +93,7 @@ function App() {
               key={filter}
               className={filter == selectedFilter ? "active" : ''}
               onClick={() => setSelectedFilter(filter)}
-              {...(index !== 0 && { id: `filter-btn-${index}` })}
+              {...(index !== 0 && { id: `#filter-btn-${index}` })}
             >{filter}</span>
           ))
         }
