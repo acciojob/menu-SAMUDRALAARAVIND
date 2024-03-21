@@ -84,15 +84,16 @@ function App() {
   const [selectedFilter, setSelectedFilter] = useState("All");
 
   return (
-    <div>
+    <div id="main">
       <h1>Our Menu</h1>
       <div className="filters">
         {
-          filters.map(filter => (
+          filters.map((filter, index) => (
             <span
               key={filter}
               className={filter == selectedFilter ? "active" : ''}
               onClick={() => setSelectedFilter(filter)}
+              {...(index !== 0 && { id: `filter-btn-${index}` })}
             >{filter}</span>
           ))
         }
