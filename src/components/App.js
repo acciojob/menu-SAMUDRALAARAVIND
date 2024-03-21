@@ -88,19 +88,29 @@ function App() {
       <h1>Our Menu</h1>
       <div className="filters">
         {
-          filters.map((filter, index) => (
+          [
+            { type: "all", id: "all", data_test_id: "menu-item-all" },
+            {
+              type: "breakfast",
+              id: "filter-btn-1",
+              data_test_id: "menu-item-breakfast",
+            },
+            { type: "lunch", id: "filter-btn-2", data_test_id: "menu-item-lunch" },
+            { type: "shakes", id: "filter-btn-3", data_test_id: "menu-item-shakes" },
+          ].map((filter, index) => (
             <span
-              key={filter}
-              className={filter == selectedFilter ? "active" : ''}
-              onClick={() => setSelectedFilter(filter)}
-              {...(index !== 0 && { id: `#filter-btn-${index}` })}
-            >{filter}</span>
+              key={filter.id}
+              data-test-id={filter.data_test_id}
+              className={filter.type == selectedFilter ? "active" : ''}
+              onClick={() => setSelectedFilter(filter.type)}
+              id={filter.id}
+            >{filter.type}</span>
           ))
         }
       </div>
       <div className="list">
         {
-          menu.filter(item => item.category === selectedFilter || selectedFilter === "All").map((item) => {
+          menu.filter(item => item.category === selectedFilter || selectedFilter === "all").map((item) => {
             return (
               <div className="card" key={item.id}>
                 <img src={item.img} />
